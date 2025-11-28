@@ -30,6 +30,21 @@ console.log(sym1 === sym2); //false because each symbol is unique.
 
 //2. Non-Primitive Datatypes : These are more complex datatypes in JavaScript.
 //a. Object : This datatype is used to represent a collection of key-value pairs. Objects can contain properties and methods.
+//Objects is written under curly braces with a key-value pair:-
+let person = {
+    firstName: "Atharva",
+    lastName: "Sinha",
+    age: 20,
+    isStudent: true
+}
 console.log(typeof ""); //string
 console.log(typeof null); //object (this is a known quirk in JavaScript).
 console.log(typeof undefined); //undefined
+//b. Array : This datatype is used to represent a list of values. Arrays can contain elements of different datatypes.
+let fruits = ["Apple", "Banana", "Orange"]; //Array of strings
+//c. Function : This datatype is used to represent a block of code that can be executed when called.
+//We can create functions using function declaration, function expression or arrow functions.
+const myFunction = function(){
+    console.log("Hello World!!");
+    
+} 
