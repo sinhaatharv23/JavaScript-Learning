@@ -6,6 +6,7 @@ They are basically stored in the memory of the computer.
 4.Without var, let or const : If we declare a variable without var, let or const, it becomes a global variable and can be accessed from anywhere in the code.
 
 
-[NOTE:-If we dont wanna write again and again the console.log() then we can use another way to print multiple variables at once i.e. console.table();]
+[NOTE:-1.If we dont wanna write again and again the console.log() then we can use another way to print multiple variables at once i.e. console.table();
+2.If we only declare the variable and not define it (like let accountState;) so it'll treat it as undefined]
 
 See the tutorial-code.
