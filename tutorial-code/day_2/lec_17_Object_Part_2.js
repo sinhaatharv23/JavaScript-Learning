@@ -41,7 +41,7 @@ const Obj2 = {
     key4: "value4"
 };
 
-const mergeObj =  Object.assign({},Obj1,Obj2);
+const mergeObj =  Object.assign({},Obj1,Obj2);//here {} is the target object where we want to copy the properties of Obj1 and Obj2.
 console.log(mergeObj);
 //The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
 //It returns the target object.

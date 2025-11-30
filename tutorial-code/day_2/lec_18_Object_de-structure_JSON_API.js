@@ -12,7 +12,7 @@ console.log(course.courseName);
 //But if we have to access multiple properties of the object, then it becomes tedious to write the object name again and again.
 //To solve this problem, we can use Object De-structuring.
 //Object De-structuring Syntax
-// const {} = course;
+// const {Name of the property} = course(Name of the object);
 
 //Example of Object De-structuring:
 const {courseName} = course;
