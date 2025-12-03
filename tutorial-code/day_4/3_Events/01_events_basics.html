@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+    //JS ke andar jitne bhi events hote hai wo sequentially run hote hai (except few) , as JS is a sequentially runnable language.
+    // document.getElementById('owl').onclick = function(){
+    //     alert("Owl Clicked!");
+    // };This approach is good but when we are applying onclick in id,we might not get the complete info by using onclick on Ids
+    //So we use eventListeners , as they dont even give the onclick properties but also gives the abilities of propagation
+    
+
+    //Best approach:-
+    //EventListener:- Event listener basically boht saare events ko listen kr skta hai
+    //jaise keyboards ke events ko ,mouse ke events ko (drag and drop) etc.
+    document.getElementById('owl').addEventListener('click',()=>{
+        alert("Owl clicked!");
+    },false);//Syntax of event. 
+    //What's the use of false(default value),we mayo or maynot write it ?? 
+    //1.attachEvent() method:- Used in early time, where there was a rise in Internet Explorer and it was very difficult for our application to run on Internet Explorer so attachEvent() was the saviour at that time
+    //not used much nowadays
+    //2.jQuery : used in early time
+
+    
+//Event Object:-
+document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log(e);
+    },false);
+
+    //What we have to study:-
+    //1.type
+    //2.timestamp
+    //3.defaultPrevented
+    //4.target
+    //5.toElement
+    //6.srcElement
+    //7.currentTarget
+    //8.clientX,clientY
+    //9.screenX,screenY
+    //10.altKey,ctrlKey,shiftKey,keyCode
+
+    //We'll study now:- EventPropagation:-
+    //It has two context:- eventBubbling,eventCapturing
+    /*1.EventBubbling:- document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log(e);
+    },false); here default is set to false, mostly used in market
+    2.EventCapturing:- document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log(e);
+    },true); here its true
+    */
+
+
+    //Same code different target Ids:-
+    //Event Bubbling concept:- 
+    document.getElementById('images').addEventListener('click',(e)=>{
+        console.log("clicked inside the ul");
+    },false);//this will be printed when we'll be clicking inside the ul
+    document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log("owl clicked");//this will be printed when we'll be specifically click on owl
+    },false);
+    
+    /*[NOTE:- Jab hm owl pr click krenge to hamara owl waala print to hoga he hoga,but owl is inside image right?? it means, hamara ul walaa bhi print hoga 
+    
+    So here comes the question:-
+    What will be printed first??
+    =>Here comes the concept of event bubbling where bubble means we'll go from low to high, means pehle 
+    jaise maine owl pr click kra to jo owl walaa console hai wo print hoga pehle and then outer wala ul walaa console print hoga. 
+    ]*/
+
+    //Event capturing concept :-
+     document.getElementById('images').addEventListener('click',(e)=>{
+        console.log("clicked inside the ul");
+    },true);//this will be printed when we'll be clicking inside the ul
+    document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log("owl clicked");//this will be printed when we'll be specifically click on owl
+    },true);
+
+    /*
+    [NOTE:- Jab hm owl pr click krenge to hamara owl waala print to hoga he hoga,but owl is inside image right?? it means, hamara ul walaa bhi print hoga 
+    
+    So here comes the question:-
+    What will be printed first??
+    =>Here comes the concept of event capturing where capturing means we'll go from high to low, means pehle 
+    jaise maine owl pr click kra to jo ul walaa console hai wo print hoga pehle and then inner wala owl walaa console print hoga.  ]
+    */
+
+   //So in this it depends on our usecase which one to use :- event bubbling or event capturing
+
+   //If we want to stop this propagation then there is a method which is k/s stopPropagation()
+   //stopPropagation():- Stops the event from bubbling or capturing to parent elements
+   document.getElementById('owl').addEventListener('click',(e)=>{
+        console.log("owl clicked");
+        e.stopPropagation();
+    },false);
+
+    //PreventDefault:- Stops the default browser action (form submit, link open, scroll, etc.)
+    document.getElementById('google').addEventListener('click',(e)=>{
+        console.log("Google clicked");
+        e.preventDefault();
+    },false);
+
+
+
+
+    //Basic projects:-
+    //When I click the image it should become invisible:-
+
+    document.querySelector('#images').addEventListener('click',(e)=>{
+
+        console.log(e.target.parentNode);
+        //to remove the images when clicked:-
+        if(e.target.tagName==='IMG'){
+            console.log(e.target.id);
+        let removeIt = e.target.parentNode
+        removeIt.remove();
+        }
+    },false);   
+</script>
+</html>
