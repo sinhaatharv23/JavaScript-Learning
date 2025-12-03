@@ -130,3 +130,6 @@ document.getElementById("name").addEventListener("input", (e) => {
 
 
 👉 As you type → text updates live.
+
+
+
